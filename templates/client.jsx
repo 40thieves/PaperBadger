@@ -1,5 +1,4 @@
-/* jshint esversion: 6 */
-import React from 'react'
+import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Router, Route, browserHistory } from 'react-router'
 
@@ -16,26 +15,30 @@ fetch('/user', {
 })
 .then((response) => {
   if (response.status >= 400) {
-      throw new Error("Bad response from server");
+    throw new Error("Bad response from server");
   }
-  let user = response.json();
 
+  return response.json()
+})
+.then((user) => {
   render((
     <Router history={browserHistory}>
-      <Route path="/" component={HomePage}/>
-      <Route path="/about" component={AboutPage} />
-      <Route path="/issue(/:slug)" component={IssuePage} />
-      <Route path="/denied/?" component={DeniedPage} />
-      <Route path="/papers/new" component={NewPaperPage} />
-      <Route path="/v/*" component={ViewPage} />
-      <Route path="/*" component={NotFoundPage}/>
+      <Route path="/" component={withUser(HomePage, user)} />
+      <Route path="/about" component={withUser(AboutPage, user)} />
+      <Route path="/issue(/:slug)" component={withUser(IssuePage, user)} />
+      <Route path="/denied/?" component={withUser(DeniedPage, user)} />
+      <Route path="/papers/new" component={withUser(NewPaperPage, user)} />
+      <Route path="/v/*" component={withUser(ViewPage, user)} />
+      <Route path="/*" component={withUser(NotFoundPage, user)} />
     </Router>
   ), document.getElementById('app'));
-
-  // FIXME user is not passed
-  /*
-    Router.run(routes, Router.HistoryLocation, function (Handler) {
-      render(<Handler user={user}/>, document.body);
-    });
-  */
 });
+
+// HOC to decorate Routes with user
+function withUser(Component, user) {
+  return class WithUser extends Component {
+    render() {
+      return <Component {...this.props} user={user} />
+    }
+  }
+}
