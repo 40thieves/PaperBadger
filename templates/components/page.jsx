@@ -3,8 +3,7 @@ import { Link } from 'react-router'
 import Header from './header.jsx'
 import Footer from './footer.jsx'
 
-
-function Page(props) {
+export default function Page(props) {
   var splash;
 
   if (props.splash){
@@ -37,5 +36,3 @@ function Page(props) {
     </div>
   );
 }
-
-module.exports = Page;

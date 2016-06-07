@@ -1,7 +1,7 @@
-var React = require('react'),
-    Badge = require('./badge.jsx');
+import React, { Component } from 'react'
+import Badge from './badge.jsx'
 
-class BadgeList extends React.Component {
+export default class BadgeList extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {data: []};
@@ -25,10 +25,9 @@ class BadgeList extends React.Component {
   }
 
   render() {
-    var badgeNodes = this.state.data.map(function(badge, index) {
+    var badgeNodes = this.state.data.map(function(badge) {
       return (
-        <Badge badge={badge} key={badge.id}>
-        </Badge>
+        <Badge badge={badge} key={badge.id} />
       );
     });
     return (
@@ -38,5 +37,3 @@ class BadgeList extends React.Component {
     );
   }
 }
-
-module.exports = BadgeList;

@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Page from '../components/page.jsx';
 
-
-class About extends React.Component {
+export default class About extends Component {
   componentDidMount() {
     document.title = "About Contributorship Badges";
   }
@@ -18,5 +17,3 @@ class About extends React.Component {
       );
   }
 }
-
-module.exports = About;

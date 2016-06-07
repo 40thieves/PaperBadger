@@ -1,10 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router'
 import Page from '../components/page.jsx'
 import BadgeList from '../components/badgelist.jsx'
 
-
-class Home extends React.Component {
+export default class Home extends Component {
   componentDidMount() {
     document.title = "Contributorship Badges";
   }
@@ -130,5 +129,3 @@ class Home extends React.Component {
     );
   }
 }
-
-module.exports = Home;
