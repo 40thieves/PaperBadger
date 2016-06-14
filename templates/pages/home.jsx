@@ -8,10 +8,6 @@ export default class Home extends Component {
     document.title = "Contributorship Badges";
   }
 
-  handleClick(i) {
-    console.log(i);
-  }
-
   render() {
     return (
       <Page splash>
