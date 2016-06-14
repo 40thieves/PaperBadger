@@ -40,15 +40,15 @@ export default class Issue extends Component {
   claimSubmit(e) {
     e.preventDefault();
 
-    var claim = findDOMNode(this.refs.claim).value.trim();
+    var claim = this.refs.claim.value.trim();
     this.loadClaimFromServer(claim);
   }
 
   handleSubmit(e) {
     e.preventDefault();
 
-    var orcid = findDOMNode(this.refs.orcid).value.trim();
-    var doi = findDOMNode(this.refs.doi).value.trim();
+    var orcid = this.refs.orcid.value.trim();
+    var doi = this.refs.doi.value.trim();
     var badges = this.refs.badges.getCheckedValues();
     var claim = this.state.claim.slug;
 
