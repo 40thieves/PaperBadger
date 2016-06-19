@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { findDOMNode } from 'react-dom'
 import path from 'path'
 import CheckboxGroup from 'react-checkbox-group'
 import Page from '../components/page.jsx'
