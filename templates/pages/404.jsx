@@ -1,7 +1,7 @@
-var React = require('react'),
-    Page = require('../components/page.jsx');
+import React, { Component } from 'react'
+import Page from '../components/page.jsx'
 
-class fourOhFour extends React.Component {
+export default class FourOhFour extends Component {
   componentDidMount() {
     document.title = "PaperBadger: Page Not Found";
   }
@@ -14,5 +14,3 @@ class fourOhFour extends React.Component {
     );
   }
 }
-
-module.exports = fourOhFour;
