@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PropTypes, Component } from 'react'
 import path from 'path'
 import validator from 'validator'
 import Page from '../components/page.jsx'
@@ -26,7 +26,7 @@ export default class Paper extends Component {
 
     if(this.props.user.role != 'publisher'){
       //redirect home is user isn't a publisher
-      this.replaceWith('home');
+      this.context.router.replace('home');
     }
   }
 
@@ -123,4 +123,8 @@ export default class Paper extends Component {
 
       );
   }
+}
+
+Paper.contextTypes = {
+  router: PropTypes.object
 }
