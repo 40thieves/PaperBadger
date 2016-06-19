@@ -1,13 +1,15 @@
-var React = require('react'),
-    BadgeInstanceList = require('../components/badgeInstanceList.jsx'),
-    Page = require('../components/page.jsx'),
-    orcidRe = /\/users\/(\d{4}-\d{4}-\d{4}-\d{3}[\dX])/,
-    doiRe = /\/papers\/(10\.\d{3}\d+)\/([^\/]*)\//,
-    badgeRe = /\/badges\/([a-z_]*)\b/;
+import React, { Component } from 'react'
+import BadgeInstanceList from '../components/badgeInstanceList.jsx'
+import Page from '../components/page.jsx'
 
-class viewBadges extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+var orcidRe = /\/users\/(\d{4}-\d{4}-\d{4}-\d{3}[\dX])/,
+  doiRe = /\/papers\/(10\.\d{3}\d+)\/([^\/]*)\//,
+  badgeRe = /\/badges\/([a-z_]*)\b/;
+
+export default class ViewBadges extends Component {
+  constructor(props) {
+    super(props);
+
     this.updateUrl = this.updateUrl.bind(this);
     this.state = { };
   }
@@ -57,5 +59,3 @@ class viewBadges extends React.Component {
     );
   }
 }
-
-module.exports = viewBadges;
