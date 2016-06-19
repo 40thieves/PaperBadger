@@ -1,15 +1,24 @@
-var React = require('react'),
-    Navigation = require('react-router').Navigation,
-    path = require('path'),
-    validator = require('validator'),
-    Page = require('../components/page.jsx');
+import React, { Component } from 'react'
+import path from 'path'
+import validator from 'validator'
+import Page from '../components/page.jsx'
 
-var Issue = React.createClass({
-  mixins: [Navigation],
-  componentWillMount: function() {
+export default class Paper extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {data: '', doi: '', 'submitted': false, 'emailError': false, 'doiError': false};
+
+    this.handleDataChange = this.handleDataChange.bind(this);
+    this.handleDoiChange = this.handleDoiChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillMount() {
     document.title = "Submit a Paper | Contributorship Badges";
-  },
-  componentDidMount: function() {
+  }
+
+  componentDidMount() {
     if(!this.props.user){
       //redirect if user isn't logged in
       window.location.href="/request-orcid-user-auth";
@@ -19,15 +28,18 @@ var Issue = React.createClass({
       //redirect home is user isn't a publisher
       this.replaceWith('home');
     }
-  },
-  validateEmail: function(emailId) {
+  }
+
+  validateEmail(emailId) {
     return validator.isEmail(emailId);
-  },
-  validateDOI: function(doi) {
+  }
+
+  validateDOI(doi) {
     var doiRe = /(10\.\d{3}\d+)\/(.*)\b/;
     return doiRe.test(doi);
-  },
-  handleSubmit: function(e) {
+  }
+
+  handleSubmit(e) {
     e.preventDefault();
     var doi = this.state.doi;
     var emails = this.state.data.split('\n');
@@ -67,17 +79,17 @@ var Issue = React.createClass({
         this.setState({data: '', doi: '', 'submitted': true, 'emailError': false, 'doiError': false});
     });
     return;
-  },
-  getInitialState: function() {
-      return {data: '', doi: '', 'submitted': false, 'emailError': false, 'doiError': false};
-  },
-  handleDoiChange: function(event) {
+  }
+
+  handleDoiChange(event) {
     this.setState({doi: event.target.value});
-  },
-  handleDataChange: function(event) {
+  }
+
+  handleDataChange(event) {
     this.setState({data: event.target.value});
-  },
-  render: function() {
+  }
+
+  render() {
     return (
       <Page>
         <h1>Submit a Paper</h1>
@@ -111,6 +123,4 @@ var Issue = React.createClass({
 
       );
   }
-});
-
-module.exports = Issue;
+}
