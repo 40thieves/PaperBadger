@@ -1,7 +1,7 @@
-var React = require('react'),
-    Page = require('../components/page.jsx');
+import React, { Component } from 'react'
+import Page from '../components/page.jsx'
 
-class deniedAccess extends React.Component {
+export default class DeniedAccess extends Component {
   componentDidMount() {
     document.title = "PaperBadger: User denied access";
   }
@@ -14,5 +14,3 @@ class deniedAccess extends React.Component {
     );
   }
 }
-
-module.exports = deniedAccess;
