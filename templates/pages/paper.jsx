@@ -101,12 +101,12 @@ export default class Paper extends Component {
             <fieldset>
                 <div className="pure-control-group">
                     <label for="doi">DOI</label>
-                    <input type="text" value={doi} onChange={this.handleDoiChange} placeholder="Paper DOI" />
+                    <input type="text" value={this.state.doi} onChange={this.handleDoiChange} placeholder="Paper DOI" />
                 </div>
 
                 <div className="pure-control-group">
                     <label for="authors">Author Emails</label>
-                    <textarea value={data} onChange={this.handleDataChange} placeholder="Author emails"></textarea>
+                    <textarea value={this.state.data} onChange={this.handleDataChange} placeholder="Author emails" />
                 </div>
 
                 <div className="pure-control-group">
